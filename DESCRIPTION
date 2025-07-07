@@ -1,7 +1,7 @@
 Package: degradr
 Type: Package
 Title: Title: Estimating Remaining Useful Life with Linear Mixed Effects Models
-Description: Provides tools to estimate the Remaining Useful Life (RUL) of degrading systems using mixed effects models. Supports both linear and exponential degradation models (the latter via a logarithmic transformation). Remaining Life Distributions (RLDs) are computed for new units via Bayesian updating, allowing in-situ predictive maintenance. Based on the methodology of Liu and Huang (2016) <doi:10.1109/TASE.2014.2349733>.
+Description: Provides tools to estimate the Remaining Useful Life (RUL) of degrading systems using mixed effects models. Supports both linear and exponential degradation models (the latter via a logarithmic transformation). Remaining Life Distributions (RLDs) are computed for new units via Bayesian updating, allowing in-situ predictive maintenance. The critical degradation threshold can be specified as fixed or modeled as a random variable.. Based on the methodology of Liu and Huang (2016) <doi:10.1109/TASE.2014.2349733>.
 Version: 1.0.0
 Authors@R: c(person(given="Pedro Abraham", family="Montoya Calzada", role = c("aut", "cre", "cph"), 
               comment = c(ORCID = "0009-0002-3497-210X"),email = "pedroabraham.montoya@gmail.com"),
@@ -14,3 +14,6 @@ Imports: dplyr, nlme
 Author: Pedro Abraham Montoya Calzada [aut, cre, cph] (<https://orcid.org/0009-0002-3497-210X>),
   Rogelio Salinas Gutiérrez [aut, cph] (<https://orcid.org/0000-0002-1669-4460>),
 Maintainer: Pedro Abraham Montoya Calzada <pedroabraham.montoya@gmail.com>
+Depends: 
+    R (>= 3.5)
+LazyData: true
