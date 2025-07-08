@@ -9,6 +9,27 @@ predict_rlu <- function(data, model, D = NULL, alpha = 0.05, upper = NULL) {
 
   units_list <- split(data, data$unit)
 
+  # Función segura para cada cuantíl
+  safe_qRLD <- function(q, ...) {
+    tryCatch(
+      qRLD(q, ...),
+      error = function(e) {
+        warning(sprintf("Falló qRLD para q = %.3f: %s", q, e$message))
+        NA
+      }
+    )
+  }
+
+  safe_qRLD_random <- function(q, ...) {
+    tryCatch(
+      qRLD_random(q, ...),
+      error = function(e) {
+        warning(sprintf("Falló qRLD_random para q = %.3f: %s", q, e$message))
+        NA
+      }
+    )
+  }
+
   predict_one <- function(unit_data) {
     t <- unit_data$t
     x <- unit_data$x
@@ -22,35 +43,45 @@ predict_rlu <- function(data, model, D = NULL, alpha = 0.05, upper = NULL) {
     p <- model$degree
     type <- model$type
 
-    rlu <- tryCatch({
-      if (is.null(D)) {
-        qRLD_random(c(alpha/2, 0.5, 1 - alpha/2), n = n, u1 = u1,
-                    sigma1 = sigma1, sigma2 = sigma2,
-                    ud = ud, vd = vd, p = p, upper = upper)
-      } else {
-        D_trans <- D
-        if (type == "exponential") {
-          phi <- model$phi
-          D_trans <- log(D - phi)
-        }
-        qRLD(c(alpha/2, 0.5, 1 - alpha/2), n = n, u1 = u1,
-             sigma1 = sigma1, sigma2 = sigma2,
-             p = p, D = D_trans, upper = upper)
+    if (is.null(D)) {
+      li <- safe_qRLD_random(alpha/2, n = n, u1 = u1,
+                             sigma1 = sigma1, sigma2 = sigma2,
+                             ud = ud, vd = vd, p = p, upper = upper)
+      med <- safe_qRLD_random(0.5, n = n, u1 = u1,
+                              sigma1 = sigma1, sigma2 = sigma2,
+                              ud = ud, vd = vd, p = p, upper = upper)
+      ls <- safe_qRLD_random(1 - alpha/2, n = n, u1 = u1,
+                             sigma1 = sigma1, sigma2 = sigma2,
+                             ud = ud, vd = vd, p = p, upper = upper)
+    } else {
+      D_trans <- D
+      if (type == "exponential") {
+        phi <- model$phi
+        D_trans <- log(D - phi)
       }
-    }, error = function(e) {
-      warning(paste("Fallo en cálculo de RLU para unidad", unique(unit_data$unit), ":", e$message))
-      c(NA, NA, NA)
-    })
+
+      li <- safe_qRLD(alpha/2, n = n, u1 = u1,
+                      sigma1 = sigma1, sigma2 = sigma2,
+                      p = p, D = D_trans, upper = upper)
+      med <- safe_qRLD(0.5, n = n, u1 = u1,
+                       sigma1 = sigma1, sigma2 = sigma2,
+                       p = p, D = D_trans, upper = upper)
+      ls <- safe_qRLD(1 - alpha/2, n = n, u1 = u1,
+                      sigma1 = sigma1, sigma2 = sigma2,
+                      p = p, D = D_trans, upper = upper)
+    }
 
     data.frame(
       unit = unique(unit_data$unit),
-      RLU_lower = rlu[1],
-      RLU_median = rlu[2],
-      RLU_upper = rlu[3]
+      RLU_lower = li,
+      RLU_median = med,
+      RLU_upper = ls
     )
   }
+
   results <- lapply(units_list, predict_one)
   results_df <- dplyr::bind_rows(results)
 
   return(results_df)
 }
+
