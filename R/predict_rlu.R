@@ -22,20 +22,25 @@ predict_rlu <- function(data, model, D = NULL, alpha = 0.05, upper = NULL) {
     p <- model$degree
     type <- model$type
 
-    if (is.null(D)) {
-      rlu <- qRLD_random(c(alpha/2, 0.5, 1 - alpha/2), n = n, u1 = u1,
-                         sigma1 = sigma1, sigma2 = sigma2,
-                         ud = ud, vd = vd, p = p, upper = upper)
-    } else {
-      D_trans <- D
-      if (type == "exponential") {
-        phi <- model$phi
-        D_trans <- log(D - phi)
+    rlu <- tryCatch({
+      if (is.null(D)) {
+        qRLD_random(c(alpha/2, 0.5, 1 - alpha/2), n = n, u1 = u1,
+                    sigma1 = sigma1, sigma2 = sigma2,
+                    ud = ud, vd = vd, p = p, upper = upper)
+      } else {
+        D_trans <- D
+        if (type == "exponential") {
+          phi <- model$phi
+          D_trans <- log(D - phi)
+        }
+        qRLD(c(alpha/2, 0.5, 1 - alpha/2), n = n, u1 = u1,
+             sigma1 = sigma1, sigma2 = sigma2,
+             p = p, D = D_trans, upper = upper)
       }
-      rlu <- qRLD(c(alpha/2, 0.5, 1 - alpha/2), n = n, u1 = u1,
-                  sigma1 = sigma1, sigma2 = sigma2,
-                  p = p, D = D_trans, upper = upper)
-    }
+    }, error = function(e) {
+      warning(paste("Fallo en cálculo de RLU para unidad", unique(unit_data$unit), ":", e$message))
+      c(NA, NA, NA)
+    })
 
     data.frame(
       unit = unique(unit_data$unit),
@@ -44,7 +49,6 @@ predict_rlu <- function(data, model, D = NULL, alpha = 0.05, upper = NULL) {
       RLU_upper = rlu[3]
     )
   }
-
   results <- lapply(units_list, predict_one)
   results_df <- dplyr::bind_rows(results)
 
