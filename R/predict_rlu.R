@@ -9,13 +9,11 @@ predict_rlu <- function(data, model, D = NULL, alpha = 0.05, upper = NULL) {
 
   units_list <- split(data, data$unit)
 
-  # Función segura para cada cuantíl
   safe_qRLD <- function(q, ...) {
     tryCatch(
       qRLD(q, ...),
       error = function(e) {
-        warning(sprintf("Falló qRLD para q = %.3f: %s", q, e$message))
-        NA
+       NA
       }
     )
   }
@@ -24,7 +22,6 @@ predict_rlu <- function(data, model, D = NULL, alpha = 0.05, upper = NULL) {
     tryCatch(
       qRLD_random(q, ...),
       error = function(e) {
-        warning(sprintf("Falló qRLD_random para q = %.3f: %s", q, e$message))
         NA
       }
     )

@@ -3,4 +3,4 @@ export(predict_rlu)
 import(nlme)
 import(dplyr)
 importFrom("stats", "AIC", "BIC", "as.formula", "logLik", "pnorm",
-               "sigma", "var")
+               "sigma", "var","coef", "cov", "lm", "residuals")

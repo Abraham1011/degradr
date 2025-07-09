@@ -1,4 +1,4 @@
-fit_model <- function(data, type = "exponential",
+fit_model <- function(data, type = "exponential", method = "nlme",
                       degree = 2, phi = NULL) {
   if(type == "exponential"){
     if (is.null(phi)) {
@@ -17,14 +17,19 @@ fit_model <- function(data, type = "exponential",
     fixed_formula <- as.formula(paste("L ~", time_terms))
     random_formula <- as.formula(paste("~", time_terms, "| unit"))
 
-    model <- nlme::lme(
-      fixed = fixed_formula,
-      random = random_formula,
-      data = model_data
+    model <- switch (method,
+      "nlme" = model_nlme(
+        fixed_formula = fixed_formula,
+        random_formula = random_formula,
+        data = model_data),
+      "lm" = model_lm(
+        fixed_formula = fixed_formula,
+        data = model_data)
     )
-    u0 <- fixed.effects(model)
-    Sigma0 <- getVarCov(model)
-    sigma2 <- sigma(model)^2
+
+    u0 <- model$u0
+    Sigma0 <- model$Sigma0
+    sigma2 <- model$sigma2
     ud <- mean(data_last$L)
     vd <- var(data_last$L)
     structure(list(
@@ -37,10 +42,7 @@ fit_model <- function(data, type = "exponential",
       degree = degree,
       ud = ud,
       vd = vd,
-      upper = max(data$t),
-      logLik = as.numeric(logLik(model)),
-      AIC = AIC(model),
-      BIC = BIC(model)
+      upper = max(data$t)
     ), class = "degradation_model")
   }else{
     data_last <- data %>%
@@ -50,18 +52,23 @@ fit_model <- function(data, type = "exponential",
     fixed_formula <- as.formula(paste("x ~", time_terms))
     random_formula <- as.formula(paste("~", time_terms, "| unit"))
 
-    model <- nlme::lme(
-      fixed = fixed_formula,
-      random = random_formula,
-      data = data
+    model <- switch (method,
+                     "nlme" = model_nlme(
+                       fixed_formula = fixed_formula,
+                       random_formula = random_formula,
+                       data = data),
+                     "lm" = model_lm(
+                       fixed_formula = fixed_formula,
+                       data = data)
     )
-    u0 <- fixed.effects(model)
-    Sigma0 <- getVarCov(model)
-    sigma2 <- sigma(model)^2
+
+    u0 <- model$u0
+    Sigma0 <- model$Sigma0
+    sigma2 <- model$sigma2
     ud <- mean(data_last$x)
     vd <- var(data_last$x)
     structure(list(
-      model = model,
+      model = model$model,
       u0 = u0,
       Sigma0 = Sigma0,
       sigma2 = sigma2,
@@ -69,10 +76,7 @@ fit_model <- function(data, type = "exponential",
       degree = degree,
       ud = ud,
       vd = vd,
-      upper = max(data$t),
-      logLik = as.numeric(logLik(model)),
-      AIC = AIC(model),
-      BIC = BIC(model)
+      upper = max(data$t)
     ), class = "degradation_model")
   }
 }
