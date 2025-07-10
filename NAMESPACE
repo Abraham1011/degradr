@@ -1,6 +1,8 @@
 export(fit_model)
 export(predict_rlu)
+export(fit_healthindex)
 import(nlme)
 import(dplyr)
+import(quadprog)
 importFrom("stats", "AIC", "BIC", "as.formula", "logLik", "pnorm",
                "sigma", "var","coef", "cov", "lm", "residuals")

@@ -1,4 +1,13 @@
 predict_rlu <- function(data, model, D = NULL, alpha = 0.05, upper = NULL) {
+  if(class(model) == "healthindex"){
+    data_index <- log_transform(data = data, phi = model$index$phi)
+    data <- data_index %>%
+      mutate(x = as.vector(as.matrix(select(.,-unit,-t)) %*% model$index$w)) %>%
+      select(unit,t,x)
+    model <- model$model
+  }
+
+
   if (!all(c("t", "x", "unit") %in% colnames(data))) {
     stop("Input data must have columns: 't', 'x', and 'unit'")
   }

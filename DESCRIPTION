@@ -10,7 +10,7 @@ Authors@R: c(person(given="Pedro Abraham", family="Montoya Calzada", role = c("a
 License: GPL-3
 Encoding: UTF-8
 RoxygenNote: 7.2.1
-Imports: dplyr, nlme
+Imports: dplyr, nlme, quadprog
 Author: Pedro Abraham Montoya Calzada [aut, cre, cph] (<https://orcid.org/0009-0002-3497-210X>),
   Rogelio Salinas Gutiérrez [aut, cph] (<https://orcid.org/0000-0002-1669-4460>),
 Maintainer: Pedro Abraham Montoya Calzada <pedroabraham.montoya@gmail.com>

@@ -2,7 +2,7 @@ fit_model <- function(data, type = "exponential", method = "nlme",
                       degree = 2, phi = NULL) {
   if(type == "exponential"){
     if (is.null(phi)) {
-      epsilon <- 0.01
+      epsilon <- 0.1
       phi <- min(data$x) - epsilon * diff(range(data$x))
     }
     model_data <- data %>%

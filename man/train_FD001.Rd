@@ -1,0 +1,54 @@
+\name{train_FD001}
+\alias{train_FD001}
+\docType{data}
+\title{
+NASA Turbofan Engine Degradation Simulation Data (FD001)
+}
+\description{
+Run-to-failure simulation data for aircraft turbofan engines generated using C-MAPSS (Commercial Modular Aero-Propulsion System Simulation). This dataset represents engine degradation in the High Pressure Compressor (HPC) module under varying operational conditions.
+}
+\usage{data("train_FD001")}
+\format{
+  A data frame with multiple observations (rows) on the following 24 variables (columns):
+  \describe{
+    \item{\code{unit}}{Engine unit number (identifier)}
+    \item{\code{t}}{Time in cycles}
+    \item{\code{T2}}{Total temperature at fan inlet (°R)}
+    \item{\code{T24}}{Total temperature at LPC outlet (°R)}
+    \item{\code{T30}}{Total temperature at HPC outlet (°R)}
+    \item{\code{T50}}{Total temperature at LPT outlet (°R)}
+    \item{\code{P2}}{Pressure at fan inlet (psia)}
+    \item{\code{P15}}{Total pressure in bypass-duct (psia)}
+    \item{\code{P30}}{Total pressure at HPC outlet (psia)}
+    \item{\code{Nf}}{Physical fan speed (rpm)}
+    \item{\code{Nc}}{Physical core speed (rpm)}
+    \item{\code{epr}}{Engine pressure ratio (P50/P2)}
+    \item{\code{Ps30}}{Static pressure at HPC outlet (psia)}
+    \item{\code{phi}}{Ratio of fuel flow to Ps30 (pps/psi)}
+    \item{\code{NRf}}{Corrected fan speed (rpm)}
+    \item{\code{NRc}}{Corrected core speed (rpm)}
+    \item{\code{BPR}}{Bypass Ratio}
+    \item{\code{farB}}{Burner fuel-air ratio}
+    \item{\code{htBleed}}{Bleed Enthalpy}
+    \item{\code{Nf_dmd}}{Demanded fan speed (rpm)}
+    \item{\code{PCNfR_dmd}}{Demanded corrected fan speed (rpm)}
+    \item{\code{W31}}{HPT coolant bleed (lbm/s)}
+    \item{\code{W32}}{LPT coolant bleed (lbm/s)}
+  }
+}
+\details{
+The data was generated for the Prognostics and Health Management (PHM) 2008 data challenge. Each engine unit starts with some initial wear and progresses to failure as efficiency and flow parameters degrade exponentially. The failure criterion is when the health index (calculated from stall margins and EGT) reaches zero. The dataset includes sensor measurements taken at cruise conditions.
+}
+\source{
+Saxena, A., Goebel, K., Simon, D., & Eklund, N. (2008). Damage Propagation Modeling for Aircraft Engine Run-to-Failure Simulation. NASA Ames Research Center.
+}
+\references{
+\itemize{
+  \item Frederick, D., DeCastro, J., & Litt, J. (2007). User's Guide for the Commercial Modular Aero-Propulsion System Simulation (C-MAPSS). NASA/ARL TM2007-215026.
+  \item Saxena, A., et al. (2008). Metrics for Evaluating Performance of Prognostics Techniques. International Conference on Prognostics and Health Management.
+}
+}
+\examples{
+data(train_FD001)
+}
+\keyword{datasets}
