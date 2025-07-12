@@ -59,11 +59,14 @@ colnames(filter_train)
 colnames(filter_train) <- c("t", "x", "unit")
 colnames(filter_test)  <- c("t", "x", "unit", "RUL")
 
+# Plot the training set
+plot_degradr(data = filter_train, D = 600)
+
 # Fit an exponential mixed-effects model of degree 1
 model <- fit_model(data = filter_train, type = "exponential", degree = 1)
 
 # Predict the remaining useful life (RUL) for the test units,
 # assuming a fixed failure threshold D = 600
-predict_rlu(data = filter_test, model = model, D = 600, alpha = 0.05)
+predict_rul(data = filter_test, model = model, D = 600)
 }
 

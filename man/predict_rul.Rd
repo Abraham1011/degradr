@@ -1,5 +1,5 @@
-\name{predict_rlu}
-\alias{predict_rlu}
+\name{predict_rul}
+\alias{predict_rul}
 \title{
 Predicting Remaining Useful Life (RUL) from Degradation Signals
 }
@@ -7,7 +7,7 @@ Predicting Remaining Useful Life (RUL) from Degradation Signals
 Estimates the Remaining Useful Life (RUL) for one or more partially observed degradation signals based on a previously fitted linear or exponential mixed-effects model. Returns the posterior RUL distribution for each unit.
 }
 \usage{
-predict_rlu(data, model, D = NULL, alpha = 0.05, upper = NULL)
+predict_rul(data, model, D = NULL, upper = NULL)
 }
 \arguments{
   \item{data}{A data frame with columns \code{t} (time), \code{x} (degradation measurement), and \code{unit} (unit identifier). Multiple units can be passed simultaneously.}
@@ -15,8 +15,6 @@ predict_rlu(data, model, D = NULL, alpha = 0.05, upper = NULL)
   \item{model}{An object of class \code{"degradation_model"} produced by the \code{\link{fit_model}} function.}
 
   \item{D}{(Optional) Critical degradation threshold. If provided, it will be used to compute the RUL via a fixed-threshold model. If \code{NULL} (default), a random-threshold model will be used based on training data statistics.}
-
-  \item{alpha}{Confidence level for the RUL prediction interval. Default is \code{0.05}, returning the 95\% predictive interval.}
 
   \item{upper}{Optional upper bound for the search interval when solving for the quantiles of the RUL distribution. If \code{NULL}, the function will use the maximum observed time in the training data.}
 }
@@ -29,9 +27,7 @@ It supports both linear and exponential degradation models, matching the formula
 A data frame with one row per unit and the following columns:
 \describe{
   \item{unit}{Unit identifier.}
-  \item{RLU_lower}{Lower quantile of the Remaining Useful Life (RUL) at level \code{alpha/2}.}
-  \item{RLU_median}{Posterior median of the RUL.}
-  \item{RLU_upper}{Upper quantile of the RUL at level \code{1 - alpha/2}.}
+  \item{RUL}{Estimated RUL.}
 }
 }
 \references{
@@ -51,10 +47,13 @@ colnames(filter_train)
 colnames(filter_train) <- c("t", "x", "unit")
 colnames(filter_test)  <- c("t", "x", "unit", "RUL")
 
+# Plot the training set
+plot_degradr(data = filter_train, D = 600)
+
 # Fit an exponential mixed-effects model of degree 1
 model <- fit_model(data = filter_train, type = "exponential", degree = 1)
 
 # Predict the remaining useful life (RUL) for the test units,
 # assuming a fixed failure threshold D = 600
-predict_rlu(data = filter_test, model = model, D = 600, alpha = 0.05)
+predict_rul(data = filter_test, model = model, D = 600)
 }

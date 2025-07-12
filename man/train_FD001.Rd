@@ -39,15 +39,10 @@ Run-to-failure simulation data for aircraft turbofan engines generated using C-M
 \details{
 The data was generated for the Prognostics and Health Management (PHM) 2008 data challenge. Each engine unit starts with some initial wear and progresses to failure as efficiency and flow parameters degrade exponentially. The failure criterion is when the health index (calculated from stall margins and EGT) reaches zero. The dataset includes sensor measurements taken at cruise conditions.
 }
-\source{
-Saxena, A., Goebel, K., Simon, D., & Eklund, N. (2008). Damage Propagation Modeling for Aircraft Engine Run-to-Failure Simulation. NASA Ames Research Center.
-}
 \references{
-\itemize{
-  \item Frederick, D., DeCastro, J., & Litt, J. (2007). User's Guide for the Commercial Modular Aero-Propulsion System Simulation (C-MAPSS). NASA/ARL TM2007-215026.
-  \item Saxena, A., et al. (2008). Metrics for Evaluating Performance of Prognostics Techniques. International Conference on Prognostics and Health Management.
+Saxena, A., Goebel, K., Simon, D., & Eklund, N. (2008). \emph{Damage propagation modeling for aircraft engine run-to-failure simulation}. In \emph{2008 International Conference on Prognostics and Health Management} (pp. 1--9). IEEE. \doi{10.1109/PHM.2008.4711414}
 }
-}
+
 \examples{
 data(train_FD001)
 }

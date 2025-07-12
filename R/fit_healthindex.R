@@ -5,7 +5,7 @@ fit_healthindex <- function(data, type = "exponential", method = "nlme",
   w <- index$w
   phi <- index$phi
   if(type == "exponential"){
-    data_index <- log_transform(data = data, phi = phi)
+    data_index <- log_transform(data = data, phi_list = phi)
   }else{
     data_index <- data
   }

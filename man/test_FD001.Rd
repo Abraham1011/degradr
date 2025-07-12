@@ -43,14 +43,8 @@ Key characteristics of this test dataset:
   \item Includes realistic measurement noise and unit-to-unit variability
   }
 }
-\source{
-Saxena, A., Goebel, K., Simon, D., & Eklund, N. (2008). Damage Propagation Modeling for Aircraft Engine Run-to-Failure Simulation. NASA Ames Research Center.
-}
 \references{
-\itemize{
-  \item Frederick, D., DeCastro, J., & Litt, J. (2007). User's Guide for the Commercial Modular Aero-Propulsion System Simulation (C-MAPSS). NASA/ARL TM2007-215026.
-  \item Saxena, A., et al. (2008). Metrics for Evaluating Performance of Prognostics Techniques. International Conference on Prognostics and Health Management.
-}
+Saxena, A., Goebel, K., Simon, D., & Eklund, N. (2008). \emph{Damage propagation modeling for aircraft engine run-to-failure simulation}. In \emph{2008 International Conference on Prognostics and Health Management} (pp. 1--9). IEEE. \doi{10.1109/PHM.2008.4711414}
 }
 \examples{
 data(test_FD001)
