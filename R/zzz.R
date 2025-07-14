@@ -1,1 +1,1 @@
-utils::globalVariables(c("x", "unit"))
+utils::globalVariables(c("x", "unit","."))

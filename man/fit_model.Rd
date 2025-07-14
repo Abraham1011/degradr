@@ -9,6 +9,7 @@ Fits a linear or exponential mixed-effects model of degree \(p\) for the degrada
 \usage{
 fit_model(data,
   type = "exponential",
+  method = "lm",
   degree = 2,
   phi = NULL)
 }
@@ -16,6 +17,8 @@ fit_model(data,
   \item{data}{A data frame with three columns: \code{t} for time, \code{x} for the degradation signal, and \code{unit} as the unit identifier. At least two distinct units are required.}
 
   \item{type}{Model type. Either \code{"linear"} or \code{"exponential"}. The exponential model applies a logarithmic transformation to \code{x - phi}. Default is \code{"exponential"}.}
+
+  \item{method}{Estimation method. Either \code{"nlme"} to fit a nonlinear mixed-effects model using \code{nlme::lme()}, or \code{"lm"} to fit separate linear models per unit and estimate fixed and random effects from the set of coefficients. Default is \code{"lm"}.}
 
   \item{degree}{Degree of the polynomial model. Default is \code{2}. The fixed and random effects will include powers of time up to the specified degree.}
 
@@ -56,11 +59,14 @@ colnames(filter_train)
 colnames(filter_train) <- c("t", "x", "unit")
 colnames(filter_test)  <- c("t", "x", "unit", "RUL")
 
+# Plot the training set
+plot_degradr(data = filter_train, D = 600)
+
 # Fit an exponential mixed-effects model of degree 1
 model <- fit_model(data = filter_train, type = "exponential", degree = 1)
 
 # Predict the remaining useful life (RUL) for the test units,
 # assuming a fixed failure threshold D = 600
-predict_rlu(data = filter_test, model = model, D = 600, alpha = 0.05)
+predict_rul(data = filter_test, model = model, D = 600)
 }
 
