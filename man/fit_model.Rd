@@ -9,7 +9,7 @@ Fits a linear or exponential mixed-effects model of degree \(p\) for the degrada
 \usage{
 fit_model(data,
   type = "exponential",
-  method = "nlme",
+  method = "lm",
   degree = 2,
   phi = NULL)
 }
@@ -18,7 +18,7 @@ fit_model(data,
 
   \item{type}{Model type. Either \code{"linear"} or \code{"exponential"}. The exponential model applies a logarithmic transformation to \code{x - phi}. Default is \code{"exponential"}.}
 
-  \item{method}{Estimation method. Either \code{"nlme"} to fit a nonlinear mixed-effects model using \code{nlme::lme()}, or \code{"lm"} to fit separate linear models per unit and estimate fixed and random effects from the set of coefficients. Default is \code{"nlme"}.}
+  \item{method}{Estimation method. Either \code{"nlme"} to fit a nonlinear mixed-effects model using \code{nlme::lme()}, or \code{"lm"} to fit separate linear models per unit and estimate fixed and random effects from the set of coefficients. Default is \code{"lm"}.}
 
   \item{degree}{Degree of the polynomial model. Default is \code{2}. The fixed and random effects will include powers of time up to the specified degree.}
 

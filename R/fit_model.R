@@ -1,4 +1,4 @@
-fit_model <- function(data, type = "exponential", method = "nlme",
+fit_model <- function(data, type = "exponential", method = "lm",
                       degree = 2, phi = NULL) {
   if(type == "exponential"){
     if (is.null(phi)) {

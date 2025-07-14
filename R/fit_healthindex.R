@@ -1,4 +1,4 @@
-fit_healthindex <- function(data, type = "exponential", method = "nlme",
+fit_healthindex <- function(data, type = "exponential", method = "lm",
                             degree = 2, phi = NULL, r = 0.5){
   index <- healthindex(data = data, type = type,
                        p = degree, r = r, phi = phi)

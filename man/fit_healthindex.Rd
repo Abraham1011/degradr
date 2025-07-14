@@ -9,7 +9,7 @@ Fits a health index–based degradation model by projecting multivariate sensor 
 \usage{
 fit_healthindex(data,
   type = "exponential",
-  method = "nlme",
+  method = "lm",
   degree = 2,
   phi = NULL,
   r = 0.5)
@@ -18,7 +18,7 @@ fit_healthindex(data,
   \item{data}{A data frame containing sensor readings over time. Must include the columns \code{t} (time), \code{unit} (unit identifier), and multiple degradation signals. All degradation signals must have an upward trend.}
   \item{type}{Model type. Either \code{"linear"} or \code{"exponential"}. The exponential model applies a logarithmic transformation to \code{x - phi}. Default is \code{"exponential"}.}
 
-  \item{method}{Estimation method. Either \code{"nlme"} to fit a nonlinear mixed-effects model using \code{nlme::lme()}, or \code{"lm"} to fit separate linear models per unit and estimate fixed and random effects from the set of coefficients. Default is \code{"nlme"}.}
+  \item{method}{Estimation method. Either \code{"nlme"} to fit a nonlinear mixed-effects model using \code{nlme::lme()}, or \code{"lm"} to fit separate linear models per unit and estimate fixed and random effects from the set of coefficients. Default is \code{"lm"}.}
 
   \item{degree}{Degree of the polynomial model. Default is \code{2}. The fixed and random effects will include powers of time up to the specified degree.}
 
