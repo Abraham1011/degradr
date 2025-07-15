@@ -4,7 +4,7 @@
 Predicting Remaining Useful Life (RUL) from Degradation Signals
 }
 \description{
-Estimates the Remaining Useful Life (RUL) for one or more partially observed degradation signals based on a previously fitted linear or exponential mixed-effects model. Returns the posterior RUL distribution for each unit.
+Estimates the Remaining Useful Life (RUL) for one or more partially observed degradation signals based on a previously fitted linear or exponential mixed-effects model.
 }
 \usage{
 predict_rul(data, model, D = NULL, upper = NULL)
@@ -19,7 +19,7 @@ predict_rul(data, model, D = NULL, upper = NULL)
   \item{upper}{Optional upper bound for the search interval when solving for the quantiles of the RUL distribution. If \code{NULL}, the function will use the maximum observed time in the training data.}
 }
 \details{
-This function applies Bayesian updating to compute the posterior distribution of the degradation model parameters for each unit, conditional on its observed signal. Then, it computes the Remaining Life Distribution (RLD) and returns quantiles of interest: lower bound, median, and upper bound.
+This function applies Bayesian updating to compute the posterior distribution of the degradation model parameters for each unit, conditional on its observed signal. Then, it computes the Remaining Life Distribution (RLD) and returns the estimated Remaining Useful Life.
 
 It supports both linear and exponential degradation models, matching the formulation used in \code{\link{fit_model}}. The posterior updating follows the methodology of Liu and Huang (2016).
 }
