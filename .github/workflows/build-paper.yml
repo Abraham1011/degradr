@@ -1,0 +1,39 @@
+name: Build JOSS paper
+
+on:
+  push:
+    paths:
+      - "paper/**"
+      - ".github/workflows/build-paper.yml"
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Quarto (with TinyTeX)
+        uses: quarto-dev/quarto-actions/setup@v2
+        with:
+          tinytex: true
+
+      - name: Render PDF
+        working-directory: paper
+        run: |
+          quarto render paper.md --to pdf
+
+      - name: Render HTML (opcional)
+        if: always()
+        working-directory: paper
+        run: |
+          quarto render paper.md --to html
+
+      - name: Upload artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: paper-build
+          path: |
+            paper/paper.pdf
+            paper/paper.html
