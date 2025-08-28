@@ -82,6 +82,7 @@ The package can be installed directly from CRAN
 ```R
 install.packages("degradr")
 ```
+
 ```R
 library(degradr)
 library(tidyverse)
@@ -91,9 +92,41 @@ data(test_FD001)
 data <- train_FD001 %>%
   select(unit,t,T24,T50,
          Nf,Ps30) 
-head(data)
+test <- test_FD001 %>%
+  select(unit,t,T24,T50,
+         Nf,Ps30) 
+head(data,5)
+```
 
 ```
+  unit t    T24     T50      Nf  Ps30
+1    1 1 641.82 1400.60 2388.06 47.47
+2    1 2 642.15 1403.14 2388.04 47.49
+3    1 3 642.35 1404.20 2388.08 47.27
+4    1 4 642.35 1401.87 2388.11 47.13
+5    1 5 642.37 1406.22 2388.06 47.28
+```
+
+```R
+model <- fit_healthindex(data = data, type = "exponential",
+ degree = 2, r = 0.8)
+rul_pred <- predict_rul(data = test, model = model)
+head(rul_pred)
+```
+
+```
+  unit       RUL
+1    1 172.50174
+2    2 122.94194
+3    3  68.58376
+4    4  67.98462
+5    5  94.17453
+6    6 127.29824
+```
+
+# Acknowledgements
+
+Thanks to SECIHTI for its support and to the Autonomous University of Aguascalientes for the use of its facilities.
 
 # References
 
