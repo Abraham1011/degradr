@@ -15,10 +15,6 @@ License: GPL-3
 Encoding: UTF-8
 RoxygenNote: 7.2.1
 Imports: dplyr, nlme, quadprog, ggplot2
-Author: Pedro Abraham Montoya Calzada [aut, cre, cph] (<https://orcid.org/0009-0002-3497-210X>),
-  Rogelio Salinas Gutiérrez [aut, cph] (<https://orcid.org/0000-0002-1669-4460>),
-  Silvia Rodríguez-Narciso [aut, cph] (<https://orcid.org/0000-0001-5429-5914>),
-  Netzahualcóyotl Castañeda-Leyva [aut, cph] (<https://orcid.org/0000-0001-9414-3923>),
 Maintainer: Pedro Abraham Montoya Calzada <pedroabraham.montoya@gmail.com>
 Depends: 
     R (>= 4.5)
