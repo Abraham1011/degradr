@@ -86,20 +86,20 @@ This pipeline enables reproducible prognostic analyses in R, lowering the barrie
 The package can be installed directly from CRAN
 
 ```R
->>> install.packages("degradr")
+install.packages("degradr")
 ```
 
 ```R
->>> library(degradr)
->>> library(tidyverse)
+library(degradr)
+library(tidyverse)
 
->>> data(train_FD001)
->>> data(test_FD001)
->>> data <- train_FD001 %>%
+data(train_FD001)
+data(test_FD001)
+data <- train_FD001 %>%
   select(unit,t,T24,T50,Nf,Ps30) 
->>> test <- test_FD001 %>%
+test <- test_FD001 %>%
   select(unit,t,T24,T50,Nf,Ps30) 
->>> head(data,5)
+head(data,5)
 ```
 
 ```
@@ -112,10 +112,10 @@ The package can be installed directly from CRAN
 ```
 
 ```R
->>> model <- fit_healthindex(data = data, type = "exponential",
+model <- fit_healthindex(data = data, type = "exponential",
  degree = 2, r = 0.8)
->>> rul_pred <- predict_rul(data = test, model = model)
->>> head(rul_pred)
+rul_pred <- predict_rul(data = test, model = model)
+head(rul_pred)
 ```
 
 ```
