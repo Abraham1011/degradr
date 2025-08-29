@@ -96,11 +96,9 @@ library(tidyverse)
 data(train_FD001)
 data(test_FD001)
 data <- train_FD001 %>%
-  select(unit,t,T24,T50,
-         Nf,Ps30) 
+  select(unit,t,T24,T50,Nf,Ps30) 
 test <- test_FD001 %>%
-  select(unit,t,T24,T50,
-         Nf,Ps30) 
+  select(unit,t,T24,T50,Nf,Ps30) 
 head(data,5)
 ```
 

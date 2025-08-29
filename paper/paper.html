@@ -504,11 +504,9 @@ library(tidyverse)
 data(train_FD001)
 data(test_FD001)
 data &lt;- train_FD001 %&gt;%
-  select(unit,t,T24,T50,
-         Nf,Ps30) 
+  select(unit,t,T24,T50,Nf,Ps30) 
 test &lt;- test_FD001 %&gt;%
-  select(unit,t,T24,T50,
-         Nf,Ps30) 
+  select(unit,t,T24,T50,Nf,Ps30) 
 head(data,5)</code></pre>
 <pre><code>  unit t    T24     T50      Nf  Ps30
 1    1 1 641.82 1400.60 2388.06 47.47
