@@ -392,7 +392,8 @@ linear and exponential degradation trajectories, with the latter handled
 via a log-transformation. RUL distributions are estimated using Bayesian
 updating, enabling predictive maintenance in real-world settings. The
 methodology builds upon the data fusion and degradation modeling
-framework proposed by Liu and Huang (2016) <span class="citation">(<a href="#ref-6902828">Liu and Huang 2016</a>)</span>.<br />
+framework proposed by <span class="citation">(<a href="#ref-6902828">Liu
+and Huang 2016</a>)</span>.<br />
 The package is freely available on CRAN, ensuring accessibility and easy
 installation for the R community <span class="citation">(<a href="#ref-RCoreTeam">R Core Team 2025</a>)</span>.</p>
 </div>
@@ -497,27 +498,27 @@ research, industrial projects, and teaching activities.</p>
 <div id="illustrative-example" class="section level1">
 <h1>Illustrative example</h1>
 <p>The package can be installed directly from CRAN</p>
-<pre class="r"><code>install.packages(&quot;degradr&quot;)</code></pre>
-<pre class="r"><code>library(degradr)
-library(tidyverse)
+<pre class="r"><code>&gt;&gt;&gt; install.packages(&quot;degradr&quot;)</code></pre>
+<pre class="r"><code>&gt;&gt;&gt; library(degradr)
+&gt;&gt;&gt; library(tidyverse)
 
-data(train_FD001)
-data(test_FD001)
-data &lt;- train_FD001 %&gt;%
+&gt;&gt;&gt; data(train_FD001)
+&gt;&gt;&gt; data(test_FD001)
+&gt;&gt;&gt; data &lt;- train_FD001 %&gt;%
   select(unit,t,T24,T50,Nf,Ps30) 
-test &lt;- test_FD001 %&gt;%
+&gt;&gt;&gt; test &lt;- test_FD001 %&gt;%
   select(unit,t,T24,T50,Nf,Ps30) 
-head(data,5)</code></pre>
+&gt;&gt;&gt; head(data,5)</code></pre>
 <pre><code>  unit t    T24     T50      Nf  Ps30
 1    1 1 641.82 1400.60 2388.06 47.47
 2    1 2 642.15 1403.14 2388.04 47.49
 3    1 3 642.35 1404.20 2388.08 47.27
 4    1 4 642.35 1401.87 2388.11 47.13
 5    1 5 642.37 1406.22 2388.06 47.28</code></pre>
-<pre class="r"><code>model &lt;- fit_healthindex(data = data, type = &quot;exponential&quot;,
+<pre class="r"><code>&gt;&gt;&gt; model &lt;- fit_healthindex(data = data, type = &quot;exponential&quot;,
  degree = 2, r = 0.8)
-rul_pred &lt;- predict_rul(data = test, model = model)
-head(rul_pred)</code></pre>
+&gt;&gt;&gt; rul_pred &lt;- predict_rul(data = test, model = model)
+&gt;&gt;&gt; head(rul_pred)</code></pre>
 <pre><code>  unit       RUL
 1    1 172.50174
 2    2 122.94194
