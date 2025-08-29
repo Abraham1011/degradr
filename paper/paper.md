@@ -23,7 +23,7 @@ authors:
 affiliations:
   - name: Universidad Autónoma de Aguascalientes (UAA), México
     index: 1
-    ror: 01m8c9483
+    ror: 03ec8vy26
 date: 27 August 2025
 bibliography: references.bib
 link-citations: true
