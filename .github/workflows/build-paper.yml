@@ -1,39 +1,24 @@
-name: Build JOSS paper
-
-on:
-  push:
-    paths:
-      - "paper/**"
-      - ".github/workflows/build-paper.yml"
-  workflow_dispatch:
+name: Draft PDF
+on: [push]
 
 jobs:
-  build:
+  paper:
     runs-on: ubuntu-latest
+    name: Paper Draft
     steps:
       - name: Checkout
         uses: actions/checkout@v4
-
-      - name: Setup Quarto (with TinyTeX)
-        uses: quarto-dev/quarto-actions/setup@v2
+      - name: Build draft PDF
+        uses: openjournals/openjournals-draft-action@master
         with:
-          tinytex: true
-
-      - name: Render PDF
-        working-directory: paper
-        run: |
-          quarto render paper.md --to pdf
-
-      - name: Render HTML (opcional)
-        if: always()
-        working-directory: paper
-        run: |
-          quarto render paper.md --to html
-
-      - name: Upload artifacts
+          journal: joss
+          # This should be the path to the paper within your repo.
+          paper-path: paper/paper.md
+      - name: Upload
         uses: actions/upload-artifact@v4
         with:
-          name: paper-build
-          path: |
-            paper/paper.pdf
-            paper/paper.html
+          name: paper
+          # This is the output path where Pandoc will write the compiled
+          # PDF. Note, this should be the same directory as the input
+          # paper.md
+          path: paper/paper.pdf
