@@ -31,7 +31,7 @@ link-citations: true
 
 # Summary
 
-**degradr**[@degradr] is an R package that provides tools for estimating the Remaining Useful Life (RUL) of degrading systems using the mixed effects model proposed by [@Lu01051993]. It supports both univariate and multivariate degradation signals, where multivariate inputs are fused into a univariate health index prior to modeling. The package implements both linear and exponential degradation trajectories, with the latter handled via a log-transformation. RUL distributions are estimated using Bayesian updating, enabling predictive maintenance in real-world settings. The methodology builds upon the data fusion and degradation modeling framework proposed by Liu and Huang (2016) [@6902828].  
+**degradr**[@degradr] is an R package that provides tools for estimating the Remaining Useful Life (RUL) of degrading systems using the mixed effects model proposed by [@Lu01051993]. It supports both univariate and multivariate degradation signals, where multivariate inputs are fused into a univariate health index prior to modeling. The package implements both linear and exponential degradation trajectories, with the latter handled via a log-transformation. RUL distributions are estimated using Bayesian updating, enabling predictive maintenance in real-world settings. The methodology builds upon the data fusion and degradation modeling framework proposed by [@6902828].  
 The package is freely available on CRAN, ensuring accessibility and easy installation for the R community [@RCoreTeam].  
 
 
