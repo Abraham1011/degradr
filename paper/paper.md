@@ -26,6 +26,7 @@ affiliations:
     ror: 01m8c9483
 date: 27 August 2025
 bibliography: references.bib
+link-citations: true
 ---
 
 # Summary
@@ -39,9 +40,11 @@ The ability to accurately predict the Remaining Useful Life of components and sy
 
 The main contribution of the package is the implementation of a health index to fuse signals from multiple inputs and predict the RUL with such an index. To our knowledge, there is currently no other package in R that provides this approach.  
 
-The package is designed for engineers, statisticians, and researchers who work with degradation data in fields such as manufacturing, aerospace, and industrial maintenance. By combining health-index construction from multiple sensors with mixed-effects degradation models, **degradr** offers a general framework that is applicable across domains. Compared to existing tools [@Survival], [@SPREDA], it lowers the barrier for practitioners to implement advanced prognostics in R, with reproducible workflows, illustrative datasets (e.g., NASA C-MAPSS [@saxena2008] and real-world filter clogging data [@hagmeyer2021]), and visualization functions. Its availability on CRAN further guarantees that the software can be easily integrated into academic research, industrial projects, and teaching activities.
+There are existing packages in R that are widely used in reliability and survival analysis, such as survival[@Survival], which provides core tools for time-to-event analysis (e.g., Kaplan–Meier curves, Cox models, accelerated failure time models)
+, and SPREDA[@SPREDA], which implements advanced methods for reliability data with dynamic covariates, degradation models, and lifetime data with censoring. However, these packages do not focus on combining heterogeneous sensor data into a health index that can be directly integrated into degradation modeling for RUL prediction.
 
-# State of the field
+By integrating health-index construction from multiple sensors with mixed-effects degradation models, **degradr** offers a complementary approach that broadens the toolbox available to practitioners. Its focus is on providing reproducible workflows, illustrative datasets (e.g., NASA C-MAPSS [@saxena2008] and real-world filter clogging data [@hagmeyer2021]), and visualization functions. Its availability on CRAN further guarantees that the software can be easily integrated into academic research, industrial projects, and teaching activities.
+
 
 # Software description
 

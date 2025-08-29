@@ -381,21 +381,20 @@ with Linear Mixed Effects Models</h1>
 
 <div id="summary" class="section level1">
 <h1>Summary</h1>
-<p><strong>degradr</strong><span class="citation">(Montoya Calzada et
-al. 2025)</span> is an R package that provides tools for estimating the
-Remaining Useful Life (RUL) of degrading systems using the mixed effects
-model proposed by <span class="citation">(Lu and Meeker 1993)</span>. It
-supports both univariate and multivariate degradation signals, where
-multivariate inputs are fused into a univariate health index prior to
-modeling. The package implements both linear and exponential degradation
-trajectories, with the latter handled via a log-transformation. RUL
-distributions are estimated using Bayesian updating, enabling predictive
-maintenance in real-world settings. The methodology builds upon the data
-fusion and degradation modeling framework proposed by Liu and Huang
-(2016) <span class="citation">(Liu and Huang 2016)</span>.<br />
+<p><strong>degradr</strong><span class="citation">(<a href="#ref-degradr">Montoya Calzada et al. 2025</a>)</span> is an R
+package that provides tools for estimating the Remaining Useful Life
+(RUL) of degrading systems using the mixed effects model proposed by
+<span class="citation">(<a href="#ref-Lu01051993">Lu and Meeker
+1993</a>)</span>. It supports both univariate and multivariate
+degradation signals, where multivariate inputs are fused into a
+univariate health index prior to modeling. The package implements both
+linear and exponential degradation trajectories, with the latter handled
+via a log-transformation. RUL distributions are estimated using Bayesian
+updating, enabling predictive maintenance in real-world settings. The
+methodology builds upon the data fusion and degradation modeling
+framework proposed by Liu and Huang (2016) <span class="citation">(<a href="#ref-6902828">Liu and Huang 2016</a>)</span>.<br />
 The package is freely available on CRAN, ensuring accessibility and easy
-installation for the R community <span class="citation">(R Core Team
-2025)</span>.</p>
+installation for the R community <span class="citation">(<a href="#ref-RCoreTeam">R Core Team 2025</a>)</span>.</p>
 </div>
 <div id="statement-of-need" class="section level1">
 <h1>Statement of need</h1>
@@ -410,22 +409,24 @@ modeling degradation processes using mixed-effects models.</p>
 health index to fuse signals from multiple inputs and predict the RUL
 with such an index. To our knowledge, there is currently no other
 package in R that provides this approach.</p>
-<p>The package is designed for engineers, statisticians, and researchers
-who work with degradation data in fields such as manufacturing,
-aerospace, and industrial maintenance. By combining health-index
-construction from multiple sensors with mixed-effects degradation
-models, <strong>degradr</strong> offers a general framework that is
-applicable across domains. Compared to existing tools <span class="citation">(Therneau 2024)</span>, <span class="citation">(Hong,
-Xie, and Xu 2025)</span>, it lowers the barrier for practitioners to
-implement advanced prognostics in R, with reproducible workflows,
-illustrative datasets (e.g., NASA C-MAPSS <span class="citation">(Saxena
-et al. 2008)</span> and real-world filter clogging data <span class="citation">(Hagmeyer, Mauthe, and Zeiler 2021)</span>), and
-visualization functions. Its availability on CRAN further guarantees
+<p>There are existing packages in R that are widely used in reliability
+and survival analysis, such as survival<span class="citation">(<a href="#ref-Survival">Therneau 2024</a>)</span>, which provides core
+tools for time-to-event analysis (e.g., Kaplan–Meier curves, Cox models,
+accelerated failure time models) , and SPREDA<span class="citation">(<a href="#ref-SPREDA">Hong, Xie, and Xu 2025</a>)</span>, which implements
+advanced methods for reliability data with dynamic covariates,
+degradation models, and lifetime data with censoring. However, these
+packages do not focus on combining heterogeneous sensor data into a
+health index that can be directly integrated into degradation modeling
+for RUL prediction.</p>
+<p>By integrating health-index construction from multiple sensors with
+mixed-effects degradation models, <strong>degradr</strong> offers a
+complementary approach that broadens the toolbox available to
+practitioners. Its focus is on providing reproducible workflows,
+illustrative datasets (e.g., NASA C-MAPSS <span class="citation">(<a href="#ref-saxena2008">Saxena et al. 2008</a>)</span> and real-world
+filter clogging data <span class="citation">(<a href="#ref-hagmeyer2021">Hagmeyer, Mauthe, and Zeiler 2021</a>)</span>),
+and visualization functions. Its availability on CRAN further guarantees
 that the software can be easily integrated into academic research,
 industrial projects, and teaching activities.</p>
-</div>
-<div id="state-of-the-field" class="section level1">
-<h1>State of the field</h1>
 </div>
 <div id="software-description" class="section level1">
 <h1>Software description</h1>
@@ -464,11 +465,12 @@ multiple units, with optional failure threshold overlays.</li>
 <ul>
 <li><code>train_FD001</code>, <code>test_FD001</code>,
 <code>RUL_FD001</code>: subsets of the NASA C-MAPSS turbofan engine
-dataset <span class="citation">(Saxena et al. 2008)</span>.<br />
+dataset <span class="citation">(<a href="#ref-saxena2008">Saxena et al.
+2008</a>)</span>.<br />
 </li>
 <li><code>filter_train</code>, <code>filter_test</code>: real-world gas
-filter clogging data <span class="citation">(Hagmeyer, Mauthe, and
-Zeiler 2021)</span>.</li>
+filter clogging data <span class="citation">(<a href="#ref-hagmeyer2021">Hagmeyer, Mauthe, and Zeiler
+2021</a>)</span>.</li>
 </ul></li>
 </ul>
 </div>
