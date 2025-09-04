@@ -15,7 +15,11 @@ License: GPL-3
 Encoding: UTF-8
 RoxygenNote: 7.2.1
 Imports: dplyr, nlme, quadprog, ggplot2
+Suggests:
+    testthat (>= 3.0.0)
 Maintainer: Pedro Abraham Montoya Calzada <pedroabraham.montoya@gmail.com>
 Depends: 
     R (>= 4.5)
 LazyData: true
+
+Config/testthat/edition: 3
