@@ -7,12 +7,12 @@ tags:
   - degradation models
   - remaining useful life
 authors:
-  - name: Pedro Abraham Montoya Calzada
+  - name: Pedro Abraham Montoya-Calzada
     orcid: 0009-0002-3497-210X
-    corresponding: true
     affiliation: 1
-  - name: Rogelio Salinas Gutiérrez
+  - name: Rogelio Salinas-Gutiérrez
     orcid: 0000-0002-1669-4460
+    corresponding: true
     affiliation: 1
   - name: Silvia Rodríguez-Narciso
     orcid: 0000-0001-5429-5914
@@ -130,7 +130,7 @@ head(rul_pred)
 
 # Acknowledgements
 
-Thanks to SECIHTI for its support and to the Autonomous University of Aguascalientes for the use of its facilities.
+Thanks to SECIHTI for its support and to the Universidad Autónoma de Aguascalientes for the use of its facilities.
 
 # References
 
