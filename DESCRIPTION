@@ -19,3 +19,7 @@ Maintainer: Pedro Abraham Montoya Calzada <pedroabraham.montoya@gmail.com>
 Depends: 
     R (>= 4.5)
 LazyData: true
+Suggests: 
+    testthat (>= 3.0.0)
+Config/testthat/edition: 3
+

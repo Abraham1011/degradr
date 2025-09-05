@@ -1,4 +1,4 @@
-predict_rul <- function(data, model, D = NULL, upper = NULL) {
+qrul <- function(prob = 0.05,data, model, D = NULL, upper = NULL) {
   if (inherits(model, "healthindex")) {
     data_index <- log_transform(data = data, phi_list = model$index$phi)
     data <- data_index %>%
@@ -22,7 +22,7 @@ predict_rul <- function(data, model, D = NULL, upper = NULL) {
     tryCatch(
       qRLD(q, ...),
       error = function(e) {
-       NA
+        NA
       }
     )
   }
@@ -50,7 +50,7 @@ predict_rul <- function(data, model, D = NULL, upper = NULL) {
     type <- model$type
 
     if (is.null(D)) {
-      med <- safe_qRLD_random(0.5, n = n, u1 = u1,
+      med <- safe_qRLD_random(prob, n = n, u1 = u1,
                               sigma1 = sigma1, sigma2 = sigma2,
                               ud = ud, vd = vd, p = p, upper = upper)
     } else {
@@ -59,23 +59,14 @@ predict_rul <- function(data, model, D = NULL, upper = NULL) {
         phi <- model$phi
         D_trans <- log(D - phi)
       }
-
-      #li <- safe_qRLD(alpha/2, n = n, u1 = u1,
-      #                sigma1 = sigma1, sigma2 = sigma2,
-      #                p = p, D = D_trans, upper = upper)
-      med <- safe_qRLD(0.5, n = n, u1 = u1,
+      med <- safe_qRLD(prob, n = n, u1 = u1,
                        sigma1 = sigma1, sigma2 = sigma2,
                        p = p, D = D_trans, upper = upper)
-      #ls <- safe_qRLD(1 - alpha/2, n = n, u1 = u1,
-      #                sigma1 = sigma1, sigma2 = sigma2,
-      #                p = p, D = D_trans, upper = upper)
     }
 
     data.frame(
       unit = unique(unit_data$unit),
-      #RLU_lower = li,
       RUL = med
-      #RLU_upper = ls
     )
   }
 

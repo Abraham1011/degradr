@@ -12,7 +12,7 @@ fit_healthindex <- function(data, type = "exponential", method = "lm",
   data_model <- data_index %>%
     mutate(x = as.vector(as.matrix(select(.,-unit,-t)) %*% w)) %>%
     select(unit,t,x)
-  model <- fit_model(data = data_model,type = "linear",
+  model <- fit_model(data = data_model,type = type,
                      method = method, degree = degree, phi = NULL)
   structure(list(
     index = index,

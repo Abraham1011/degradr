@@ -2,7 +2,11 @@ posterior <- function(model,t,x){
   degree <- model$degree
   Sigma0 <- model$Sigma0
   sigma2 <- model$sigma2
-  type <- model$type
+  if(class(model) == "healthindex"){
+    type = model$model$type
+  }else{
+    type <- model$type
+  }
   u0 <- model$u0
   if(type == "exponential"){
     phi <- model$phi
