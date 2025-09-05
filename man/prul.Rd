@@ -23,24 +23,30 @@ Numeric value between 0 and 1 giving \eqn{P(\mathrm{RUL} \le t)}.
 }
 \seealso{\code{\link{qrul}}, \code{\link{predict_rul}}}
 \examples{
-\donttest{
 library(degradr)
+library(dplyr)
+# Load example data
+data(train_FD001)
+data(test_FD001)
+data <- train_FD001 \%>\%
+  select(unit,t,T24,T50,P30,
+         Nf,Ps30,phi, NRf,
+         BPR,htBleed,
+         W31, W32) \%>\%
+  mutate(across(c(P30,phi,W31,W32), ~ . * -1))
 
-# Load example data sets
-data(filter_train)
-data(filter_test)
+test <- test_FD001 \%>\%
+  select(unit,t,T24,T50,P30,
+         Nf,Ps30,phi, NRf,
+         BPR,htBleed,
+         W31, W32) \%>\%
+  mutate(across(c(P30,phi,W31,W32), ~ . * -1))
 
-# Rename columns to the expected format
-colnames(filter_train) <- c("t", "x", "unit")
-colnames(filter_test)  <- c("t", "x", "unit", "RUL")
+# Fit a health index model (exponential trajectory of degree 2)
+model <- fit_healthindex(data = data, type = "exponential",
+                         degree = 2, r = 0.8)
+#Probability that the run length will be less than or equal to 86 cycles
+head(prul(t = 86, data = test, model = model))
 
-# Fit an exponential mixed-effects model of degree 1
-model <- fit_model(data = filter_train, type = "exponential", degree = 1)
-
-# Probability that unit 1 fails within 50 cycles given a failure threshold D = 600
-prul(t = 50,
-     data = subset(filter_test, unit == 1),
-     model = model, D = 600)
-}
 }
 \keyword{models}

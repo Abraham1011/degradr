@@ -2,7 +2,7 @@ posterior <- function(model,t,x){
   degree <- model$degree
   Sigma0 <- model$Sigma0
   sigma2 <- model$sigma2
-  if(class(model) == "healthindex"){
+  if(inherits(model, "healthindex")){
     type = model$model$type
   }else{
     type <- model$type
