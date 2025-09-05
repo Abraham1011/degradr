@@ -10,7 +10,7 @@ Estimates the Remaining Useful Life (RUL) for one or more partially observed deg
 predict_rul(data, model, D = NULL, upper = NULL)
 }
 \arguments{
-  \item{data}{A data frame with columns \code{t} (time), \code{x} (degradation measurement), and \code{unit} (unit identifier). Multiple units can be passed simultaneously.}
+    \item{data}{A data frame with columns \code{t} (time), \code{x} (degradation measurement), and \code{unit} (unit identifier) or a data frame containing sensor readings over time: must include the columns \code{t} (time), \code{unit} (unit identifier), and multiple degradation signals. Multiple units can be passed simultaneously.}
 
   \item{model}{An object of class \code{"degradation_model"} produced by the \code{\link{fit_model}} function.}
 

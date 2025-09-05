@@ -11,7 +11,7 @@ qrul(prob = 0.05, data, model, D = NULL, upper = NULL)
 }
 \arguments{
   \item{prob}{Probability at which to evaluate the quantile of the RUL distribution.}
-  \item{data}{A data frame with columns \code{t} (time), \code{x} (degradation measurement), and \code{unit} (unit identifier). If \code{model} is of class \code{"healthindex"}, provide the multivariate sensor data; the health index is computed internally.}
+  \item{data}{A data frame with columns \code{t} (time), \code{x} (degradation measurement), and \code{unit} (unit identifier) or a data frame containing sensor readings over time: must include the columns \code{t} (time), \code{unit} (unit identifier), and multiple degradation signals. Multiple units can be passed simultaneously.}
   \item{model}{An object of class \code{"degradation_model"} returned by \code{\link{fit_model}} or a \code{"healthindex"} object from \code{\link{fit_healthindex}}.}
   \item{D}{Optional critical degradation threshold. If \code{NULL}, a random-threshold model is used; otherwise the provided threshold is used. For exponential models the threshold is internally log-transformed.}
   \item{upper}{Optional upper bound for the numerical search when computing quantiles. If \code{NULL}, the maximum time observed during training is used.}

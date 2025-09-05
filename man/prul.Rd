@@ -11,7 +11,7 @@ prul(t, data, model, D = NULL)
 }
 \arguments{
   \item{t}{Time at which to evaluate the RUL cumulative distribution function.}
-  \item{data}{A data frame with columns \code{t} (time), \code{x} (degradation measurement), and \code{unit} (unit identifier) for a single unit. If \code{model} is of class \code{"healthindex"}, the multivariate sensor data should be supplied and the health index will be constructed internally.}
+  \item{data}{A data frame with columns \code{t} (time), \code{x} (degradation measurement), and \code{unit} (unit identifier) or a data frame containing sensor readings over time: must include the columns \code{t} (time), \code{unit} (unit identifier), and multiple degradation signals. Multiple units can be passed simultaneously.}
   \item{model}{An object of class \code{"degradation_model"} produced by \code{\link{fit_model}} or a \code{"healthindex"} object returned by \code{\link{fit_healthindex}}.}
   \item{D}{Optional critical degradation threshold. If provided, a fixed-threshold model is used; otherwise a random-threshold model is assumed. For exponential models the threshold is automatically transformed to the log scale.}
 }

@@ -62,6 +62,15 @@ By integrating health-index construction from multiple sensors with mixed-effect
   - `predict_rul()`: computes RUL distributions using Bayesian updating conditional on observed data. Works with both fixed-threshold and random-threshold models.  
   - Returns the point estimate of the RUL for each unit.
 
+- **Distribution of Remaining Useful Life**  
+  - `prul()`: computes RUL distributions using Bayesian updating conditional on observed data. Works with both fixed-threshold and random-threshold models.  
+  - returns the probability that the RUL is less than a time t.
+
+- **Quantile function of Remaining Useful Life**  
+  - `qrul()`: computes RUL distributions using Bayesian updating conditional on observed data and computes the quantile function of Remaining Useful Life. Works with both fixed-threshold and random-threshold models.  
+  - Returns quantiles of the Remaining Life Distribution for one or more units based on their observed degradation signals and a fitted model.
+
+
 - **Visualization**  
   - `plot_degradr()`: plots degradation trajectories for multiple units, with optional failure threshold overlays.  
 
@@ -76,7 +85,7 @@ A typical workflow with **degradr** consists of:
 1. Load degradation data (`train_FD001`, `filter_train`, or user-provided).  
 2. Visualize degradation trajectories (`plot_degradr()`).
 3. Fit the model, `fit_healthindex()` if they are multivariate data or `fit_model()` if they are univariate data.
-4. Apply **Bayesian updating** to predict RUL for new units (`predict_rul`).  
+4. Apply **Bayesian updating** to predict RUL for new units (`predict_rul`,`prul`,`qrul`).  
 
 This pipeline enables reproducible prognostic analyses in R, lowering the barrier for applying advanced degradation modeling to academic research, industrial projects, and teaching activities.
 
@@ -111,9 +120,32 @@ head(data,5)
 5    1 5 642.37 1406.22 2388.06 47.28
 ```
 
+fit the model:
+
 ```R
 model <- fit_healthindex(data = data, type = "exponential",
  degree = 2, r = 0.8)
+```
+
+Probability that the run length will be less than or equal to 86 cycles:
+
+```R
+head(prul(t = 86, data = test, model = model))
+```
+
+```
+ unit   prob
+1    1 0.0006
+2    2 0.1121
+3    3 0.8070
+4    4 0.8223
+5    5 0.4686
+6    6 0.1940
+```
+
+Estimate the RUL:
+
+```R
 rul_pred <- predict_rul(data = test, model = model)
 head(rul_pred)
 ```
